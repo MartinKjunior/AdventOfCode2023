@@ -1,9 +1,9 @@
+#personal setup
 import os
-from time import time
 
-cwd = os.path.dirname(os.path.abspath(os.path.realpath(__file__)))
-os.chdir(cwd)
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
+os.chdir(dir_path)
+#solution
 with open('games.txt') as f:
     content = f.readlines()
 

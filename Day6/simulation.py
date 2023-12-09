@@ -1,3 +1,4 @@
+#one line solution simulating the game using numpy
 print(
     #changes directory to the directory of this file
     (os:=__import__('os')) 

@@ -1,8 +1,9 @@
+#personal setup
 import os
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_path)
-
+#solution
 with open("scratchcards.txt", "r") as f:
     data = f.read().splitlines()
 

@@ -8,7 +8,7 @@ The comments in the following table contain spoilers!
 | ------ | ------- | 
 |   ✅   | Solved  | 
 |   ❇️    | Solved with help on coding the answer | 
-|   ✴️    | Solved with help on understanding solution | 
+|   ✴️    | Solved with help on understanding the solution | 
 
 | Day | Part 1 | Part 2 | Comments |
 | --- | ------ | ------ | -------- |

@@ -1,8 +1,10 @@
+#personal setup
 import os
-from copy import deepcopy
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_path)
+#solution
+from copy import deepcopy
 
 with open("almanac.txt", "r") as f:
     data = f.read().split("\n\n")
