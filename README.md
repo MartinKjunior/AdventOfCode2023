@@ -4,7 +4,6 @@ This is a repository of my attempts at solving coding challenges by Eric Wastl d
 
 The comments in the following table contain spoilers!
 
-
 | Symbol | Meaning |
 | ------ | ------- | 
 |   ✅   | Solved  | 
@@ -17,8 +16,8 @@ The comments in the following table contain spoilers!
 |  2  |   ✅   |   ✅   |          |
 |  3  |   ✅   |   ✅   |          |
 |  4  |   ✅   |   ❇️    | Had trouble coming up with the recursive solution, but I should have just tried iteration since the steps never go back |
-|  5  |   ✅   |   ❇️    |          |
+|  5  |   ✅   |   ❇️    | Spent hours failing to set up the final loop only to find out that I was appending to the wrong list, but everything else was correct 😓 |
 |  6  |   ✅   |   ✅   |          |
 |  7  |   ✅   |   ✅   |          |
 |  8  |   ✅   |   ✴️    | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
-|  9  |        |        |          |
+|  9  |   ✅   |   ✅   |          |
