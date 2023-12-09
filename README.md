@@ -15,7 +15,7 @@ The comments in the following table contain spoilers!
 |  1  |   ✅   |   ✅   |          |
 |  2  |   ✅   |   ✅   |          |
 |  3  |   ✅   |   ✅   |          |
-|  4  |   ✅   |   ❇️    | Had trouble coming up with the recursive solution, but I should have just tried iteration since the steps never go back |
+|  4  |   ✅   |   ❇️    | Had trouble implementing the recursive solution, but I should have just tried iteration since the steps never go back |
 |  5  |   ✅   |   ❇️    | Spent hours failing to set up the final loop only to find out that I was appending to the wrong list, but everything else was correct 😓 |
 |  6  |   ✅   |   ✅   |          |
 |  7  |   ✅   |   ✅   |          |
