@@ -7,8 +7,8 @@ The comments in the following table contain spoilers!
 | Symbol | Meaning |
 | ------ | ------- | 
 |   ✅   | Solved  | 
-|   ❎   | Solved with help on coding the answer | 
-|   🔶   | Solved with help on understanding the solution |
+|   ❎   | Solved with minor help| 
+|   🔶   | Solved with major help|
 |   ❌   | Unable to solve on my own | 
 
 | Day | Part 1 | Part 2 | Comments |
@@ -22,4 +22,4 @@ The comments in the following table contain spoilers!
 |  7  |   ✅   |   ✅   |          |
 |  8  |   ✅   |   🔶   | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
 |  9  |   ✅   |   ✅   |          |
-|  10 |   ✅   |   ❌   |          |
+|  10 |   ✅   |   ❌   | I might eventually try to implement a ray tracing solution but for now I've given up |
