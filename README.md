@@ -7,17 +7,19 @@ The comments in the following table contain spoilers!
 | Symbol | Meaning |
 | ------ | ------- | 
 |   ✅   | Solved  | 
-|   ❇️    | Solved with help on coding the answer | 
-|   ✴️    | Solved with help on understanding the solution | 
+|   ❎   | Solved with help on coding the answer | 
+|   🔶   | Solved with help on understanding the solution |
+|   ❌   | Unable to solve on my own | 
 
 | Day | Part 1 | Part 2 | Comments |
 | --- | ------ | ------ | -------- |
 |  1  |   ✅   |   ✅   |          |
 |  2  |   ✅   |   ✅   |          |
 |  3  |   ✅   |   ✅   |          |
-|  4  |   ✅   |   ❇️    | Had trouble implementing the recursive solution, but I should have just tried iteration since the steps never go back |
-|  5  |   ✅   |   ❇️    | Spent hours failing to set up the final loop only to find out that I was appending to the wrong list, but everything else was correct 😓 |
+|  4  |   ✅   |   ❎   | Had trouble implementing the recursive solution, but I should have just tried iteration since the steps never go back |
+|  5  |   ✅   |   ❎   | Spent hours failing to set up the final loop only to find out that I was appending to the wrong list, but everything else was correct 😓 |
 |  6  |   ✅   |   ✅   |          |
 |  7  |   ✅   |   ✅   |          |
-|  8  |   ✅   |   ✴️    | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
+|  8  |   ✅   |   🔶   | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
 |  9  |   ✅   |   ✅   |          |
+|  10 |   ✅   |   ❌   |          |
