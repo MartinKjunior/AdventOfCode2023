@@ -47,15 +47,18 @@ class Maze:
             self.maze[i] = row
 
     def find_start(self):
+        #returns the coordinates of the starting position
         for i, row in enumerate(self.maze):
             for j, cell in enumerate(row):
                 if cell == "S":
                     return np.array([i, j])
     
     def get_cell(self, pos):
+        #returns the pipe at position pos
         return self.maze[pos[0]][pos[1]]
     
     def move_animal(self):
+        #moves animal one step and updates its surroundings
         self.A.move()
         self.A.near = self.get_near()
         self.A.pipe = self.get_cell(self.A.pos)
@@ -74,6 +77,7 @@ class Maze:
         print(f'Part 2 solution: {self.calcArea()}')
     
     def calcArea(self):
+        #calculates the area of the maze
         # Shoelace formula
         sum = 0
         path = self.loop
