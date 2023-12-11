@@ -23,4 +23,4 @@ The comments in the following table contain spoilers!
 |  8  |   ✅   |   🔶   | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
 |  9  |   ✅   |   ✅   |          |
 |  10 |   ✅   |   🔶   | Tried several approaches, filling outside of loop didn't work for me but calculating polygon area did |
-|  11 |        |        |
+|  11 |   ✅   |   ❌   |          |
