@@ -7,7 +7,6 @@ os.chdir(dir_path)
 with open('tiles.txt') as f:
     data = f.read().splitlines()
 
-from dataclasses import dataclass
 import numpy as np
 
 class Maze:
@@ -20,7 +19,8 @@ class Maze:
         self.A.pipe = self.get_cell(self.A.pos)
         self.A.near = self.get_near()
         self.filled = []
-        self.dir = -1
+        self.dir = 1
+        self.loop = [np.flip(self.start) - np.array([1,1])] #removing the padding
     
     def __str__(self):
         return self.A.__str__()
@@ -59,7 +59,8 @@ class Maze:
         self.A.move()
         self.A.near = self.get_near()
         self.A.pipe = self.get_cell(self.A.pos)
-        self.fill_dirt()
+        if self.A.pipe not in "S":
+            self.loop.append(np.flip(self.A.pos) - np.array([1,1]))
     
     def get_near(self):
         #return a slice of maze around the animal
@@ -70,67 +71,24 @@ class Maze:
         while not self.A.stop:
             self.move_animal()
         print(f'Part 1 solution: {self.A.steps//2}')
-        self.dilatefill()
-        print(f'Part 2 solution: {self.count_dirt()}')
+        print(f'Part 2 solution: {self.calcArea()}')
     
-    def fill_dirt(self):
-        #fill the dirt (.) to the right side of the direction of motion of the animal with O
-        #this needs to account for diagonal dirt and curves
-        command = self.dir * (self.A.prev - self.A.pos)
-        new_commands = []
-        if command[0] == 0:
-            new_commands.append(-np.flip(command))
-            new_commands.append(-np.flip(command + np.array([1, 0])))
-            new_commands.append(-np.flip(command + np.array([-1, 0])))
-            new_commands.append(-command)
-        else:
-            new_commands.append(np.flip(command))
-            new_commands.append(np.flip(command + np.array([0, 1])))
-            new_commands.append(np.flip(command + np.array([0, -1])))
-            new_commands.append(-command)
+    def calcArea(self):
+        # Shoelace formula
+        sum = 0
+        path = self.loop
+        for i in range(len(path)):
+            n_1 = path[i]
+            n_2 = path[(i+1)%len(path)]
+            x_1, y_1 = n_1
+            x_2, y_2 = n_2
+            sum += x_1 * y_2 - y_1 * x_2
 
-        for new_command in new_commands:
-            pos = self.A.pos + new_command
-            if self.get_cell(pos) == ".":
-                self.maze[pos[0]][pos[1]] = "I"
-    
-    def find_filled(self):
-        #find all the filled cells in the maze
-        filled = []
-        for i, row in enumerate(self.maze):
-            for j, cell in enumerate(row):
-                if cell == "I":
-                    filled.append((i, j))
-        return filled
-    
-    def dilatefill(self):
-        #dilate the filled cells to fill the maze
-        steps = 1
-        while steps:
-            steps = 0
-            filled = self.find_filled()
-            for pos in filled:
-                steps += self.dilate(pos)
-            self.filled = self.find_filled()
+        area = abs(sum/2)
 
-    def dilate(self, pos):
-        #dilate the cell at pos
-        steps = 0
-        for i in range(-1, 2):
-            for j in range(-1, 2):
-                if self.get_cell(pos + np.array([i, j])) == ".":
-                    self.maze[pos[0]+i][pos[1]+j] = "I"
-                    steps += 1
-        return steps
-    
-    def count_dirt(self):
-        #count the number of dirt cells in the maze
-        dirt = 0
-        for row in self.maze:
-            dirt += row.count("I")
-        return dirt
+        # Pick's theroem
+        return int(area - len(self.loop)//2 + 1)
 
-@dataclass
 class Animal():
     def __init__(self, start=np.array([0, 0])):
         self.steps = 0

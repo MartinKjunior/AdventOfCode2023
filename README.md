@@ -9,7 +9,7 @@ The comments in the following table contain spoilers!
 |   ✅   | Solved  | 
 |   ❎   | Solved with minor help| 
 |   🔶   | Solved with major help|
-|   ❌   | Unable to solve on my own | 
+|   ❌   | Have not solved yet | 
 
 | Day | Part 1 | Part 2 | Comments |
 | --- | ------ | ------ | -------- |
@@ -22,4 +22,5 @@ The comments in the following table contain spoilers!
 |  7  |   ✅   |   ✅   |          |
 |  8  |   ✅   |   🔶   | I was trying to come up with a solution that accounts for all sorts of inputs, only to then be told that the input is special and none of that matters 😓 |
 |  9  |   ✅   |   ✅   |          |
-|  10 |   ✅   |   ❌   | I might eventually try to implement a ray tracing solution but for now I've given up |
+|  10 |   ✅   |   🔶   | Tried several approaches, filling outside of loop didn't work for me but calculating polygon area did |
+|  11 |        |        |

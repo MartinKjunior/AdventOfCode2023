@@ -31,7 +31,18 @@ s4 = """...........
 .L--J.L--J.
 ..........."""
 
-data = s3.split("\n")
+s5 = """FF7FSF7F7F7F7F7F---7
+L|LJ||||||||||||F--J
+FL-7LJLJ||||||LJL-77
+F--JF--7||LJLJ7F7FJ-
+L---JF-JLJ.||-FJLJJ7
+|F|F-JF---7F7-L7L|7|
+|FFJF7L7F-JF7|JL---7
+7-L-JL7||F7|L7F-7F7|
+L.L7LFJ|||||FJL7||LJ
+L7JLJL-JLJLJL--JLJ.L"""
+
+data = s5.split("\n")
 
 from dataclasses import dataclass
 import numpy as np
@@ -47,6 +58,7 @@ class Maze:
         self.A.near = self.get_near()
         self.filled = []
         self.dir = 1
+        self.loop = [tuple(np.flip(self.start) - np.array([1,1]))]
     
     def __str__(self):
         return self.A.__str__()
@@ -85,7 +97,8 @@ class Maze:
         self.A.move()
         self.A.near = self.get_near()
         self.A.pipe = self.get_cell(self.A.pos)
-        self.fill_dirt()
+        if self.A.pipe not in "S":
+            self.loop.append(tuple(np.flip(self.A.pos) - np.array([1,1])))
     
     def get_near(self):
         #return a slice of maze around the animal
@@ -96,8 +109,23 @@ class Maze:
         while not self.A.stop:
             self.move_animal()
         print(f'Part 1 solution: {self.A.steps//2}')
-        self.dilatefill()
-        print(f'Part 2 solution: {self.count_dirt()}')
+        print(f'Part 2 solution: {self.calcArea()}')
+    
+    def calcArea(self):
+        # Shoelace formula
+        sum = 0
+        path = self.loop
+        for i in range(len(path)):
+            n_1 = path[i]
+            n_2 = path[(i+1)%len(path)]
+            x_1, y_1 = n_1
+            x_2, y_2 = n_2
+            sum += x_1 * y_2 - y_1 * x_2
+
+        area = abs(sum/2)
+
+        # Pick's theroem
+        return int(area - len(self.loop)//2 + 1)
     
     def fill_dirt(self):
         #fill the dirt (.) to the right side of the direction of motion of the animal with O
@@ -106,12 +134,8 @@ class Maze:
         new_commands = []
         if command[0] == 0:
             new_commands.append(-np.flip(command))
-            new_commands.append(-np.flip(command + np.array([1, 0])))
-            new_commands.append(-np.flip(command + np.array([-1, 0])))
         else:
             new_commands.append(np.flip(command))
-            new_commands.append(np.flip(command + np.array([0, 1])))
-            new_commands.append(np.flip(command + np.array([0, -1])))
 
         for new_command in new_commands:
             pos = self.A.pos + new_command
@@ -210,3 +234,4 @@ M = Maze(data)
 M.solve()
 for row in M.maze:
     print("".join(row))
+print(M.loop)
