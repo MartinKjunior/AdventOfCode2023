@@ -24,3 +24,4 @@ The comments in the following table contain spoilers!
 |  9  |   ✅   |   ✅   |          |
 |  10 |   ✅   |   🔶   | Tried several approaches, filling outside of loop didn't work for me but calculating polygon area did |
 |  11 |   ✅   |   ✅   |          |
+|  12 |   ❌   |   ❌   |          |
