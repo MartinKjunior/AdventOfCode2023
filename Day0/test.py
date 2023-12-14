@@ -1,3 +1,5 @@
+from icecream import ic
+
 s = """ """
 
-l = s.split('\n')
+data = s.split('\n')

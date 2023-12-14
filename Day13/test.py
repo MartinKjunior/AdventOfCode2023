@@ -1,3 +1,5 @@
+from icecream import ic
+
 s = """#.##..##.
 ..#.##.#.
 ##......#
@@ -103,14 +105,12 @@ class Valley:
         return size
     
     def solve(self):
-        i = 7
-        j = 14
         for pattern in self.patterns:
-            for row in pattern:
-                print(row)
             self.check_rows_cols(pattern)
-            print(self.summary[-1])
-        print(sum(self.summary))
+        ic(sum(self.summary))
 
 V = Valley(data)
 V.solve()
+
+"""instead of checking for equality of each col/row, check for how many differences they have
+and then find the reflection that only has one difference across all the cols/rows"""
