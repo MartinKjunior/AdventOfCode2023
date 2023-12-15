@@ -92,9 +92,6 @@ def part2():
             count[gear[0]] = [count[gear[0]][0] + 1, count[gear[0]][1] * gear[1]]
         else:
             count[gear[0]] = [1, gear[1]]
-    for value in count.values():
-        if value[0] > 2:
-            print(value)
     #find the sum of all gears where 2 part numbers are sharing the same star
     for value in count.values():
         if value[0] == 2:

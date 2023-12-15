@@ -26,4 +26,5 @@ The comments in the following table contain spoilers!
 |  11 |   ✅   |   ✅   |          |
 |  12 |   ❌   |   ❌   |          |
 |  13 |   ✅   |   ❌   |          |
-|  14 |   ✅   |   🔶   | Part 1 was the easiest so far, part 2 took me a while to debug |
+|  14 |   ✅   |   🔶   | Part 1 has been the easiest so far, part 2 took me a while to debug |
+|  15 |   ✅   |   ❎   |          |

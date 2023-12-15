@@ -66,7 +66,7 @@ def solve2(data):
     for position in positions:
         total = keep_running(position, instructions, network, stop)
         cycles.add(total)
-    print(lcm(*cycles))
+    print(f'{lcm(*cycles):.2E}')
 
 solve1(data)
 solve2(data)
