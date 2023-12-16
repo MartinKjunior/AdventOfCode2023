@@ -28,3 +28,4 @@ The comments in the following table contain spoilers!
 |  13 |   ✅   |   ❌   |          |
 |  14 |   ✅   |   🔶   | Part 1 has been the easiest so far, part 2 took me a while to debug |
 |  15 |   ✅   |   ❎   |          |
+|  16 |   ✅   |   ✅   |          |
