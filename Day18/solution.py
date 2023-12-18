@@ -1,6 +1,7 @@
 #personal setup
 import os
 import shapely
+import matplotlib.pyplot as plt
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 os.chdir(dir_path)
@@ -37,11 +38,13 @@ class Site:
             '2': 'L',
             '3': 'U'
         }
+        self.colours = []
     
     def reset(self) -> None:
         #resets the digger and the lagoon
         self.lagoon = list()
         self.digger = Digger()
+        self.colours = []
     
     def parse_data(self) -> list[list[str, int, str]]:
         #parses the data into a list of instructions
@@ -57,9 +60,11 @@ class Site:
             if part == 1:
                 dir = instruction[0]
                 dist = instruction[1]
+                self.colours.append(instruction[2])
                 self.lagoon.append(self.digger.move(dir, dist))
             elif part == 2:
                 dir, dist = self.translate_colour(instruction[2])
+                self.colours.append(instruction[1])
                 self.lagoon.append(self.digger.move(dir, dist))
     
     @staticmethod
@@ -67,17 +72,40 @@ class Site:
         poly = shapely.Polygon(loop)
         return int(poly.area + poly.length / 2 + 1)
 
-    def solve(self, part: int) -> None:
+    def solve(self, part: int, draw: bool = True) -> None:
         #part should be an integer, 1 or 2
         self.reset()
         self.dig(part)
         print(f'Part {part} solution: {self.calcArea(self.lagoon)}')
+        if draw:
+            self.draw_map(part)
 
     def translate_colour(self, colour: str) -> tuple[str, int]:
         #translates the colour into a direction and distance
         dist = int(colour[1:-1], 16)
         dir = self.dir_dict[colour[-1]]
         return dir, dist
+    
+    def draw_map(self, part: int) -> None:
+        #draws the map
+        poly = shapely.Polygon(self.lagoon)
+        points = list(zip(*poly.exterior.xy))  # list of (x, y) points
+        for i in range(len(points) - 1):
+            x_values = [points[i][0], points[i+1][0]]
+            y_values = [points[i][1], points[i+1][1]]
+            plt.plot(
+                x_values, 
+                y_values, 
+                color = self.get_colour(self.colours[i], part)
+                )
+        plt.show()
+    
+    @staticmethod
+    def get_colour(colour: int, part: int) -> str:
+        if part == 1:
+            return colour
+        #colour is calculated as the maximum colour value divided by the step size from part 1
+        return f'#{hex(16777215 // colour)[2:].upper().zfill(6)}'
 
 class Digger:
     """
