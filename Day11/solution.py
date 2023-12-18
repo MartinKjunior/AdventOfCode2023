@@ -10,15 +10,28 @@ with open('galaxies.txt') as f:
 from itertools import combinations
 
 class Telescope:
-    def __init__(self, data):
+    """
+    Class for calculating distance between galaxies.
+    Rows and columns without galaxies are represented by '+' which translates to a large number of steps.
+    Initialise with a list of strings representing the galaxy, e.g. T = Telescope(data).
+    Run the solution using T.solve(part) where part is either 1 or 2.
+
+    Attributes:
+    self.data: list[str] -> galaxy represented by strings
+    self.galaxy: list[list[str]] -> data split into lists of characters
+    self.gshape: tuple[int, int] -> shape of galaxy
+    self.coords: list[tuple[int, int]] -> coordinates of all galaxies
+    self.step: int -> number of steps to move between galaxies
+    """
+    def __init__(self, data: list[str]) -> None:
         self.data = data
-        self.dshape = (len(data), len(data[0]))
         self.galaxy = []
         self.expand_space()
         self.gshape = (len(self.galaxy), len(self.galaxy[0]))
         self.coords = []
+        self.step = 0
         
-    def expand_space(self):
+    def expand_space(self) -> None:
         #replaces dots in rows and columns without galaxies with pluses
         new_data = []
         for row in self.data:
@@ -30,6 +43,7 @@ class Telescope:
         height = len(self.galaxy)
         width = len(self.galaxy[0])
         for col in range(width):
+            #for columns, first extract the column as a string
             new_col = ''
             for row in range(height):
                 new_col += self.galaxy[row][col]
@@ -37,7 +51,7 @@ class Telescope:
                 for i in range(height):
                     self.galaxy[i][col] = '+'
     
-    def find_galaxies(self):
+    def find_galaxies(self) -> None:
         #finds the coordinates of all galaxies
         self.coords = []
         for row in range(self.gshape[0]):
@@ -45,18 +59,18 @@ class Telescope:
                 if self.galaxy[row][col] == '#':
                     self.coords.append((row, col))
     
-    def find_distances(self, part):
+    def find_distances(self, part: int) -> None:
         #for each combination of galaxies, finds the shortest distance without moving diagonally
         distances = []
         for pair in combinations(self.coords, 2):
             distances.append(self.move_between_coords(pair[0], pair[1]))
         print(f'Part {part} solution: {sum(distances)}')
         
-    def coord_difference(self, coord1, coord2):
+    def coord_difference(self, coord1: tuple[int, int], coord2: tuple[int, int]) -> tuple[int, int]:
         #without diagonals we just find difference between x and y coordinates
         return coord2[0]-coord1[0], coord2[1]-coord1[1]
     
-    def solve(self, part):
+    def solve(self, part: int) -> None:
         #the only difference between part 1 and 2 is the value of '+'
         if part == 1:
             self.step = 2
@@ -65,7 +79,7 @@ class Telescope:
         self.find_galaxies()
         self.find_distances(part)
     
-    def move_between_coords(self, coord1, coord2):
+    def move_between_coords(self, coord1: tuple[int, int], coord2: tuple[int, int]) -> int:
         #moves from coord1 to coord2 one step at a time and records the character after each step
         delta = self.coord_difference(coord1, coord2)
         seen = []
@@ -85,7 +99,7 @@ class Telescope:
             )
         return self.count_steps(seen)
     
-    def count_steps(self, path):
+    def count_steps(self, path: list[str]) -> int:
         #count how many steps are necessary to move from one galaxy to the next
         total = 0
         for symbol in path:

@@ -24,8 +24,10 @@ The comments in the following table contain spoilers!
 |  9  |   ✅   |   ✅   |          |
 |  10 |   ✅   |   🔶   | Tried several approaches, filling outside of loop didn't work for me but calculating polygon area did |
 |  11 |   ✅   |   ✅   |          |
-|  12 |   ❌   |   ❌   |          |
-|  13 |   ✅   |   ❌   |          |
+|  12 |   ❌   |   ❌   | I have no experience with dynamic programming |
+|  13 |   ✅   |   ❌   | Part 2 needs a bit of debugging |
 |  14 |   ✅   |   🔶   | Part 1 has been the easiest so far, part 2 took me a while to debug |
 |  15 |   ✅   |   ❎   |          |
 |  16 |   ✅   |   ✅   |          |
+|  17 |   ❌   |   ❌   | I would have to learn Dijkstra's algorithm first |
+|  18 |   ✅   |   ✅   |          |

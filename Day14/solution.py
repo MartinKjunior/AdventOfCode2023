@@ -11,36 +11,42 @@ with open('rocks.txt') as f:
 import numpy as np
 from hashlib import sha256
 
-def calculate_rock_vals(data):
+def calculate_rock_vals(data: list[str]) -> list[list[int]]:
     result = [[] for _ in range(len(data[0]))] #gathering results for each column separately
     height = len(data)
     values = [height for _ in range(height)] #calculating valid rock values
     for i, row in enumerate(data):
         for j, char in enumerate(row):
             if char == '#':
+                #the boundary defined the new maximum possible value
                 values[j] = height - i - 1
             elif char == 'O':
+                #assign the value to the rock
+                #the next rock will have a value of 1 less since it's under the previous rock
                 result[j].append(values[j])
                 values[j] -= 1
     return result
 
-def solve1(data):
+def solve1(data: list[str]) -> None:
     result = calculate_rock_vals(data)
+    #sums the values for each column and then sums the columns
     ic(sum(map(sum, result)))
 
-def parse_data(data):
-    #make use of numpy's rotating function
+def parse_data(data: list[str]) -> np.ndarray:
+    #make use of numpy's rotating function to make part 2 easier
     return np.array([list(row) for row in data])
 
-def roll_rocks(data):
+def roll_rocks(data: np.ndarray) -> None:
+    #rotate the array such that moving the rocks up will move them in the 
+    # north, west, south, east direction on the original array
     N = data
-    W = np.rot90(data, -1)
+    W = np.rot90(data, -1) #returns a view
     S = np.rot90(data, -2)
     E = np.rot90(data, -3)
     for rolled in (N, W, S, E):
         shift_rocks(rolled)
 
-def shift_rocks(data):
+def shift_rocks(data: np.ndarray) -> None:
     #shifts rocks up until they hit a boundary
     coords = np.argwhere(data == 'O')
     for coord in coords:
@@ -55,8 +61,9 @@ def shift_rocks(data):
                 break
         data[*coord] = 'O'
 
-def get_values(data):
+def get_values(data: np.ndarray) -> list[int]:
     #get the values of the rocks
+    #the rocks are already shifted in the correct location so just count their values
     result = []
     height = len(data)
     for i, row in enumerate(data):
@@ -67,7 +74,7 @@ def get_values(data):
         result.append((height - i) * count)
     return result
 
-def solve2(data):
+def solve2(data: list[str]) -> None:
     data = parse_data(data)
     hashes = {}
     while True:
