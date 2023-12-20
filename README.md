@@ -31,3 +31,4 @@ The comments in the following table contain spoilers!
 |  16 |   ✅   |   ✅   |          |
 |  17 |   ❌   |   ❌   | I would have to learn Dijkstra's algorithm first |
 |  18 |   ✅   |   ✅   |          |
+|  19 |        |        | Stopped here to enjoy Christmas, might come back to this later |

@@ -135,18 +135,22 @@ class Site:
             plt.plot(
                 x_values, 
                 y_values, 
-                color = self.get_colour(self.colours[i], part)
+                color = self.get_colour(
+                    self.colours[i], 
+                    self.instructions[i].dir,
+                    part
+                    )
                 )
         plt.show()
     
     @staticmethod
-    def get_colour(colour: int, part: int) -> str:
+    def get_colour(colour: int, dir: str, part: int) -> str:
         """in part 2 I calculate the colour as the maximum hex value divided by the step size from part 1"""
         if part == 1:
             return colour
         #for a hex like 0xf0f0f, 0x is removed, letters capitalised and f0f0f prepended with 0s 
         # until it is 6 digits long to make a valid hex colour input #0F0F0F
-        return f'#{hex(16777215 // colour)[2:].upper().zfill(6)}'
+        return f'#{hex((3000000 * ('RDLU'.index(dir) + 1)) + (419 * colour))[2:].upper().zfill(6)}'
 
 class Digger:
     """
